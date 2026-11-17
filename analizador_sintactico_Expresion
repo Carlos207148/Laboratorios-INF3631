@@ -1,0 +1,49 @@
+def sintactico(tokens):
+   i, error = expresion(tokens, 0)
+   if error != '':
+	return f"{error} token: {i+1}"
+   if i < len(tokens):
+	return f" Token inesperado {tokens[i]}"
+   return "Valido"
+
+def expresion(tokens, i):
+   i, error = termino(tokens, i)
+   if error != '':
+	return i, error
+   while i < len(tokens) and tokens[i] == 10:
+      i = i + 1
+      i, error = termino(tokens, i)
+      if error != '':
+         return i, error
+   return i, ''
+
+def termino(tokens, i)
+   i, error = factor(tokens, i)
+   if error != '':
+      return i, error
+   while i < len(tokens) and tokens[i] == 11:
+      i = i + 1
+      i, error = factor(tokens, i)
+      if error != '':
+         return i, error
+   return i, ''
+
+def factor(tokens, i)
+   if i < len(tokens) and tokens[i] == 12: 
+      i = i + 1
+      return factor(tokens, i)
+   elif i < len(tokens) and tokens[i] == 80:
+      i = i + 1
+      i, error = expresion(tokens, i)
+      if error != ''
+         return i, error
+      if i < len(tokens) and tokens[i] == 85:
+         i = i + 1
+      else: 
+         return i, f"Error: se esperaba ) para cerrar la expresion"
+   elif i < len(tokens) and tokens[i] in (13, 14):
+      i = i + 1
+   else:
+      return i, f"Error se esperaba (, not, True, False"
+   return i,''
+   
